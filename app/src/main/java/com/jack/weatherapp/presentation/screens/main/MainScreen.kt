@@ -8,9 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.jack.weatherapp.R
 import com.jack.weatherapp.presentation.views.TableLayout
 
+@ExperimentalPagerApi
 @Composable
 fun MainScreen() {
     Image(
