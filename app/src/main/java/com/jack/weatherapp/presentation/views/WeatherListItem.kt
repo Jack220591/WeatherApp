@@ -15,11 +15,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
+import com.jack.weatherapp.data.models.WeatherModel
 import com.jack.weatherapp.ui.theme.BlueLight
 
-@Preview(showBackground = true)
 @Composable
-fun WeatherListItem() {
+fun WeatherListItem(
+    item: WeatherModel
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -36,18 +38,18 @@ fun WeatherListItem() {
             Column(
                 modifier = Modifier.padding(start = 8.dp, top = 5.dp, bottom = 5.dp)
             ) {
-                Text(text = "12:00")
-                Text(text = "Sunny", color = Color.White)
+                Text(text = item.time)
+                Text(text = item.condition, color = Color.White)
             }
             Text(
-                text = "25°С",
+                text = item.currentTemp.ifEmpty { "${item.maxTemp}/${item.minTemp}" },
                 color = Color.White,
                 style = TextStyle(
                     fontSize = 25.sp
                 )
             )
             Image(
-                painter = rememberImagePainter(data ="https://cdn.weatherapi.com/weather/64x64/day/296.png"),
+                painter = rememberImagePainter(data ="https:${item.icon}"),
                 contentDescription = "Image1",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.padding(end = 8.dp).size(35.dp)

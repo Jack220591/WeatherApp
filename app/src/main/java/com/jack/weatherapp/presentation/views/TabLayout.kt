@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
@@ -23,6 +24,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
+import com.jack.weatherapp.data.models.WeatherModel
 import com.jack.weatherapp.ui.theme.BlueLight
 import kotlinx.coroutines.launch
 
@@ -74,8 +76,31 @@ fun TableLayout() {
             modifier = Modifier.weight(1f)
         ) { index ->
             LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(15) {
-                    WeatherListItem()
+                itemsIndexed(
+                    listOf(
+                        WeatherModel(
+                            "Moscow",
+                            "26/07/2022",
+                            "25C",
+                            "Sunny",
+                            "//cdn.weatherapi.com/weather/64x64/night/296.png",
+                            "",
+                            "",
+                            ""
+                        ),
+                        WeatherModel(
+                            "Moscow",
+                            "10:00",
+                            "",
+                            "Sunny",
+                            "//cdn.weatherapi.com/weather/64x64/night/296.png",
+                            "26C",
+                            "12C",
+                            "wedewdewdewdewd"
+                        )
+                    )
+                ) { _, item ->
+                    WeatherListItem(item = item)
                 }
             }
         }
