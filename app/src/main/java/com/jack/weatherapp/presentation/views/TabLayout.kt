@@ -30,11 +30,16 @@ import kotlinx.coroutines.launch
 
 @ExperimentalPagerApi
 @Composable
-fun TableLayout() {
+fun TableLayout(
+    weatherData: WeatherModel
+) {
     val tabList = listOf("Hours", "Days")
     val pagerState = rememberPagerState()
     val tabIndex = pagerState.currentPage
     val coroutineScope = rememberCoroutineScope()
+
+    val days = weatherData.forecast?.forecastday
+
     Column(
         modifier = Modifier
             .padding(start = 5.dp, end = 5.dp)
@@ -74,34 +79,14 @@ fun TableLayout() {
             count = tabList.size,
             state = pagerState,
             modifier = Modifier.weight(1f)
-        ) { index ->
+        ) {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
-                itemsIndexed(
-                    listOf(
-                        WeatherModel(
-                            "Moscow",
-                            "26/07/2022",
-                            "25C",
-                            "Sunny",
-                            "//cdn.weatherapi.com/weather/64x64/night/296.png",
-                            "",
-                            "",
-                            ""
-                        ),
-                        WeatherModel(
-                            "Moscow",
-                            "10:00",
-                            "",
-                            "Sunny",
-                            "//cdn.weatherapi.com/weather/64x64/night/296.png",
-                            "26C",
-                            "12C",
-                            "wedewdewdewdewd"
-                        )
-                    )
-                ) { _, item ->
-                    WeatherListItem(item = item)
+                days?.forEach { day ->
+                    item {
+                        WeatherListItem(item = day)
+                    }
                 }
+
             }
         }
     }

@@ -15,12 +15,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
+import com.jack.weatherapp.data.models.ForecastDayModel
 import com.jack.weatherapp.data.models.WeatherModel
 import com.jack.weatherapp.ui.theme.BlueLight
 
 @Composable
 fun WeatherListItem(
-    item: WeatherModel
+    item: ForecastDayModel
 ) {
     Card(
         modifier = Modifier
@@ -38,18 +39,18 @@ fun WeatherListItem(
             Column(
                 modifier = Modifier.padding(start = 8.dp, top = 5.dp, bottom = 5.dp)
             ) {
-                Text(text = item.time)
-                Text(text = item.condition, color = Color.White)
+                Text(text = item.date)
+                Text(text = item.day.condition.text, color = Color.White)
             }
             Text(
-                text = item.currentTemp.ifEmpty { "${item.maxTemp}/${item.minTemp}" },
+                text = "${item.day.maxTemp}/${item.day.minTemp}" ,
                 color = Color.White,
                 style = TextStyle(
                     fontSize = 25.sp
                 )
             )
             Image(
-                painter = rememberImagePainter(data ="https:${item.icon}"),
+                painter = rememberImagePainter(data ="https:${item.day.condition.icon}"),
                 contentDescription = "Image1",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.padding(end = 8.dp).size(35.dp)

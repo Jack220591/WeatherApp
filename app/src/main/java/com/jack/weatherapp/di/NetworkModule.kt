@@ -40,7 +40,10 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         val json = Json {
-            ignoreUnknownKeys = true
+            isLenient = true            // Заменять кривые данные на default значения
+            ignoreUnknownKeys = true    // Поддержка необязательных полей
+            explicitNulls = false       // Не писать null в итоговый json
+            encodeDefaults = true       // Включает сериализацию default значений
         }
 
         return Retrofit.Builder()

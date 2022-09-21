@@ -4,6 +4,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
@@ -14,7 +16,11 @@ import com.jack.weatherapp.presentation.views.TableLayout
 
 @ExperimentalPagerApi
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    viewModel: MainViewModel
+) {
+    val weatherData = viewModel.weatherData.observeAsState()
+
     Image(
         painter = painterResource(id = R.drawable.blue_sky_image),
         contentDescription = "background",
@@ -25,6 +31,11 @@ fun MainScreen() {
     )
     Column {
         MainCard()
-        TableLayout()
+        weatherData.value?.let { TableLayout(it) }
     }
+
+    LaunchedEffect(key1 = Unit, block = {
+        viewModel.getWeatherByDays()
+    })
 }
+
