@@ -12,7 +12,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.jack.weatherapp.R
-import com.jack.weatherapp.presentation.views.TableLayout
+import com.jack.weatherapp.presentation.screens.main.components.TableLayout
 
 @ExperimentalPagerApi
 @Composable

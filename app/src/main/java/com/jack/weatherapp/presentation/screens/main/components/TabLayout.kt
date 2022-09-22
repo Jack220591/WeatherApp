@@ -1,12 +1,9 @@
-package com.jack.weatherapp.presentation.views
+package com.jack.weatherapp.presentation.screens.main.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
@@ -79,14 +76,21 @@ fun TableLayout(
             count = tabList.size,
             state = pagerState,
             modifier = Modifier.weight(1f)
-        ) {
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
-                days?.forEach { day ->
-                    item {
-                        WeatherListItem(item = day)
+        ) { tabIndex ->
+            when(tabIndex) {
+                0 -> {
+
+                }
+                1 -> {
+                    LazyColumn(modifier = Modifier.fillMaxSize()) {
+                        days?.forEach { day ->
+                            item {
+                                WeatherByDaysListItem(item = day)
+                            }
+                        }
+
                     }
                 }
-
             }
         }
     }

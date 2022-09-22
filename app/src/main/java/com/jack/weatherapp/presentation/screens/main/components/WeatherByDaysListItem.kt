@@ -1,4 +1,4 @@
-package com.jack.weatherapp.presentation.views
+package com.jack.weatherapp.presentation.screens.main.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -11,16 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.jack.weatherapp.data.models.ForecastDayModel
-import com.jack.weatherapp.data.models.WeatherModel
 import com.jack.weatherapp.ui.theme.BlueLight
 
 @Composable
-fun WeatherListItem(
+fun WeatherByDaysListItem(
     item: ForecastDayModel
 ) {
     Card(
